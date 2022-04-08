@@ -1,42 +1,46 @@
-from tkinter import Tk, Frame, BOTH
-from tkinter.ttk import Frame, Button, Style
+from PIL import Image, ImageTk
+from tkinter import Tk, BOTH
+from tkinter.ttk import Frame, Label, Style
 
 class Example(Frame):
 
-    def __init__(self, parent):
-        Frame.__init__(self, parent)
-        self.parent = parent
-        self.parent.title("Centered")
+    def __init__(self):
+        super().__init__()
+
+        self.initUI()
+
+    def initUI(self):
+
+        self.master.title("Absolute positioning")
         self.pack(fill=BOTH, expand=1)
-        self.centerWindow()
-        self.exitButton()
 
-    def exitButton(self):
-        self.style = Style()
-        self.style.theme_use("default")
+        Style().configure("TFrame", background="#333")
 
-        quitButton = Button(self, text="Close window", command=self.quit)
-        quitButton.place(x=200, y=100)
+        bard = Image.open("bardejov.jpg")
+        bardejov = ImageTk.PhotoImage(bard)
+        label1 = Label(self, image=bardejov)
+        label1.image = bardejov
+        label1.place(x=20, y=20)
 
-    def centerWindow(self):
+        rot = Image.open("rotunda.jpg")
+        rotunda = ImageTk.PhotoImage(rot)
+        label2 = Label(self, image=rotunda)
+        label2.image = rotunda
+        label2.place(x=40, y=160)
 
-        w = 290
-        h = 150
-
-        sw = self.parent.winfo_screenwidth()
-        sh = self.parent.winfo_screenheight()
-
-        x = (sw - w)/2
-        y = (sh -h)/2
-
-        self.parent.geometry('%dx%d+%d+%d' % (w, h, x, y))
+        minc = Image.open("mincol.jpg")
+        mincol = ImageTk.PhotoImage(minc)
+        label3 = Label(self, image=mincol)
+        label3.image = mincol
+        label3.place(x=170, y=50)
 
 
 def main():
-
     root = Tk()
-    app = Example(root)
+    root.geometry("300x280+300+300")
+    app = Example()
     root.mainloop()
+
 
 if __name__ == '__main__':
     main()
