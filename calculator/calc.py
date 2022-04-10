@@ -64,8 +64,10 @@ def init_interface():
 
     btn_equal = Button(root, text="=", command = lambda: evaluate_calculation(), width=11, font=("Arial", 15), bg=button_color)
     btn_equal.grid(row=6, column=3, columnspan=2)
-    btn_clear = Button(root, text="C", command = lambda: clear_field(), width=11, font=("Arial", 15), bg=button_color)
-    btn_clear.grid(row=6, column=1, columnspan=2)
+    btn_clear = Button(root, text="C", command = lambda: clear_field(), width=5, font=("Arial", 15), bg=button_color)
+    btn_clear.grid(row=6, column=1)
+    btn_dot = Button(root, text=".", command=lambda: add_to_calculation("."), width=5, font=("Arial", 15), bg=button_color)
+    btn_dot.grid(row=6, column=2)
 
 
 root = Tk()
